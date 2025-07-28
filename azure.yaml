@@ -1,0 +1,16 @@
+name: expense-tracker
+services:
+  backend:
+    project: ./backend
+    language: js
+    host: containerapp
+    env:
+      - MONGODB_URI
+      - JWT_SECRET
+      - PORT
+  frontend:
+    project: ./frontend
+    language: js
+    host: staticwebapp
+    env:
+      - REACT_APP_API_URL
