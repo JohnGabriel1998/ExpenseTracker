@@ -28,6 +28,8 @@ export type ExpenseCategory =
   | 'Foods'
   | 'Shopping'
   | 'Travel'
+  | 'Send Money to Philippines'
+  | 'Credit Card'
   | 'Others';
 
 export interface DashboardSummary {

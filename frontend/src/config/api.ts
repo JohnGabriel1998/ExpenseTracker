@@ -32,7 +32,15 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       // Token expired or invalid
       localStorage.removeItem('token');
-      window.location.href = '/login';
+      delete axios.defaults.headers.common['Authorization'];
+      
+      // Only redirect if not already on login page
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    } else if (error.response?.status === 403) {
+      // Forbidden - user doesn't have permission
+      console.error('Access forbidden');
     }
     return Promise.reject(error);
   }

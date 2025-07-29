@@ -28,6 +28,8 @@ const expenseSchema = new mongoose.Schema({
       'Foods',
       'Shopping',
       'Travel',
+      'Send Money to Philippines',
+      'Credit Card',
       'Others'
     ]
   },

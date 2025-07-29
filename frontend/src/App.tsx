@@ -1,46 +1,6 @@
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// import { CssBaseline } from '@mui/material';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { AuthProvider } from './contexts/AuthContext';
-// import { ThemeProvider as CustomThemeProvider } from './contexts/ThemeContext';
-// import PrivateRoute from './components/PrivateRoute';
-// import Layout from './components/Layout';
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-// import Dashboard from './pages/Dashboard';
-// import Expenses from './pages/Expenses';
-
-// function App() {
-//   return (
-//     <Router>
-//       <AuthProvider>
-//         <CustomThemeProvider>
-//           <CssBaseline />
-//           <Routes>
-//             <Route path="/login" element={<Login />} />
-//             <Route path="/register" element={<Register />} />
-//             <Route path="/" element={<PrivateRoute />}>
-//               <Route element={<Layout />}>
-//                 <Route index element={<Navigate to="/dashboard" replace />} />
-//                 <Route path="dashboard" element={<Dashboard />} />
-//                 <Route path="expenses" element={<Expenses />} />
-//               </Route>
-//             </Route>
-//           </Routes>
-//           <ToastContainer position="top-right" />
-//         </CustomThemeProvider>
-//       </AuthProvider>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './contexts/AuthContext';
@@ -48,7 +8,7 @@ import { ThemeProvider as CustomThemeProvider } from './contexts/ThemeContext';
 import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import Register from './pages/Register';
+import Register from './pages/RegisterNew';
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
 import AddExpense from './pages/AddExpense';
