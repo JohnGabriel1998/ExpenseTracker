@@ -24,8 +24,6 @@ import {
   Timeline,
   AccountBalanceWallet,
   Info,
-  TrendingDown,
-  GpsFixed,
 } from '@mui/icons-material';
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
@@ -43,7 +41,6 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [exchangeRate, setExchangeRate] = useState<number>(0.38); // Default JPY to PHP rate
   const [loadingRate, setLoadingRate] = useState(false);
-  const [monthlyBudget] = useState<number>(150000); // Default budget in JPY
   const { user } = useAuth();
   const { darkMode } = useTheme();
 
@@ -373,28 +370,32 @@ const Dashboard: React.FC = () => {
               >
                 <CardContent sx={{ p: 3 }}>
                   <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                    <GpsFixed sx={{ fontSize: 40, opacity: 0.9 }} />
-                    <Chip 
-                      label="Budget Progress" 
-                      size="small" 
-                      sx={{ 
-                        bgcolor: 'rgba(255, 255, 255, 0.2)', 
-                        color: 'white',
-                        fontSize: '0.75rem',
-                      }} 
-                    />
+                    <Timeline sx={{ fontSize: 40, opacity: 0.9 }} />
+                    <Box display="flex" alignItems="center" gap={0.5}>
+                      <Chip 
+                        label="All Months" 
+                        size="small" 
+                        sx={{ 
+                          bgcolor: 'rgba(255, 255, 255, 0.2)', 
+                          color: 'white',
+                          fontSize: '0.75rem',
+                        }} 
+                      />
+                      <Tooltip title={`Exchange Rate: 1 JPY = ${exchangeRate.toFixed(4)} PHP`} arrow>
+                        <Info sx={{ fontSize: 16, opacity: 0.7, cursor: 'help' }} />
+                      </Tooltip>
+                    </Box>
                   </Box>
                   <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
-                    {((summary.currentMonthTotal / monthlyBudget) * 100).toFixed(1)}%
+                    ¥{summary.monthlyTotals.reduce((total, month) => total + month.total, 0).toFixed(2)}
+                  </Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2, opacity: 0.8 }}>
+                    ₱{(summary.monthlyTotals.reduce((total, month) => total + month.total, 0) * exchangeRate).toFixed(2)}
                   </Typography>
                   <Box display="flex" alignItems="center">
-                    {summary.currentMonthTotal > monthlyBudget ? (
-                      <TrendingDown sx={{ mr: 1, color: '#e74c3c' }} />
-                    ) : (
-                      <TrendingUp sx={{ mr: 1, color: '#27ae60' }} />
-                    )}
+                    <TrendingUp sx={{ mr: 1, color: '#27ae60' }} />
                     <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                      of ¥{monthlyBudget.toLocaleString()} budget
+                      Total Year Expenses
                     </Typography>
                   </Box>
                 </CardContent>
